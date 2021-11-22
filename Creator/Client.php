@@ -1,15 +1,16 @@
 <?php
-include_once('GraphicFactory.php');
-include_once('TextFactory.php');
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+include_once('CountryFactory.php');
+include_once('KyrgyzstanProduct.php');
 class Client {
-  private $someGraphicObject;
-  private $someTextObject;
+  private $countryFactory;
 
   public function __construct(){
-    $this->someGraphicObject = new GraphicFactory();
-    echo $this->someGraphicObject->startFactory() . "<br>";
-    $this->someTextObject = new TextFactory();
-    echo $this->someTextObject->startFactory(). "<br>";
+    $this->countryFactory = new CountryFactory();
+    echo $this->countryFactory->doFactory(new KyrgyzstanProduct());
   }
 }
 $worker = new Client();
