@@ -21,7 +21,7 @@ class Client {
 	public function __construct()
 	{
 		//Instatiate
-		// $this->fly1 = new MaleProto();
+		$this->fly1 = new MaleProto();
 		$this->fly2 = new FemaleProto();
 
 		// Clone

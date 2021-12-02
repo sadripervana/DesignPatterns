@@ -11,8 +11,8 @@ abstract class IAcmePrototype
 	abstract function getDept();
 
 	// Name
-	abstract function setName($emName){
-		$this->name = $emName;
+	public function setName($emName){
+		$this->name=$emName;
 	}
 
 	public function getName(){
