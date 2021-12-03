@@ -1,16 +1,43 @@
-<?php 
-function __autoload($classname){
-	include $classname . '.php';
-}
 
+<?php ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL); //Client.php
+function __autoload($class_name)
+{
+include $class_name . '.php';
+}
 class Client
 {
-	function __construct(){
-		$caption = "Modigliani painted elongated faces.";
-		$mo = new ConcreteClass();
-		$mo->templateMethod("modig.php", $caption);
-	}
+private $buyTotal;
+private $gpsNow;
+private $mapNow;
+private $boatNow;
+private $special;
+private $zamCalc;
+function __construct()
+{
+$this->setHTML();
+$this->setCost();
+$this->zamCalc=new ZambeziCalc();
+$this->zamCalc->templateMethod($this->buyTotal,$this->special);
 }
-$worker = new Client();
-
- ?>
+private function setHTML()
+{
+$this->gpsNow=$_POST['gps'];
+$this->mapNow=$_POST['map'];
+$this->boatNow=$_POST['boat'];
+}
+private function setCost()
+{
+$this->buyTotal=$this->gpsNow;
+foreach($this->mapNow as $value)
+{
+$this->buyTotal+= $value;
+}
+//Boolean
+$this->special = ($this->buyTotal >= 200);
+$this->buyTotal += $this->boatNow;
+}
+}
+$worker=new Client();
+?>
